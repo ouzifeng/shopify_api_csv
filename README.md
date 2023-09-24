@@ -20,6 +20,11 @@ The sciprt can be built out to include more data points yourself, or get in touc
 
 Shopify rate limits API requests, I have set the max number of queries to 250 per request. This has been tested on 4 different stores with no issues. It is fast, a 20,000 product store takes about 60 seconds to generate
 
+To mitigate any 429 errors, i.e. too many requests to the Shopify server there are 2 fail safes
+
+1) Each request has a 5 second delay, the SHopify limit is one request every 2 seconds, so you can lower this to 2 if needed
+2) The the script runs a test which checks the rate limit immediately after every request, including the very first one. If it detects that it's at or near the rate limit, it will sleep for the required reset time plus a safety margin.
+
 
 
 
